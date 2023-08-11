@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-	int answer, A, B, RES;
+	int answer, A, B, RES; // комментарий
 	do {	 // вход в цикл
 		cout << "\nSelect operation:\n";
 		cout << "\n 1 - if you want to see SUM.\n";
