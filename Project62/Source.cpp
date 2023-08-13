@@ -1,39 +1,89 @@
-﻿#include <iostream>
+﻿#include<iostream>
 using namespace std;
-int main()
+
+class A
 {
-	int answer, A, B, RES; // комментарий
-	do {	 // вход в цикл
-		cout << "\nSelect operation:\n";
-		cout << "\n 1 - if you want to see SUM.\n";
-		cout << "\n 2 - if you want to see DIFFERENCE.\n";
-		cout << "\n 3 - if you want to exit.\n";
-		cin >> answer;
-		switch (answer) {
-		case  1:    // если пользователь выбрал сложение
-			cout << "Enter first digit:\n";
-			cin >> A;
-			cout << "Enter second digit:\n";
-			cin >> B;
-			RES = A + B;
-			cout << "\nAnswer: " << RES << "\n";
-			break; // остановка switch
-		case  2:     // если пользователь выбрал вычитание
-			cout << "Enter first digit:\n";
-			cin >> A;
-			cout << "Enter second digit:\n";
-			cin >> B;
-			RES = A - B;
-			cout << "\nAnswer: " << RES << "\n";
-			break; // остановка switch 
-		case  3:     // если пользователь выбрал выход
-			cout << "\nEXIT!!!\n";
-			break;
-		default:    // если выбранное действие некорректно
-			cout << "\nError!!! This answer isn't correct\n";
-		}
-	} while (answer != 3);      // проверка условия
-	cout << "\nBye...\n";
+private:
+	int m_fieldA;
+
+public:
+	A(const int valueA);
+	~A();
+	void ShowA() const;
+};
+
+class B
+{
+private:
+	int m_fieldB;
+public:
+	B(const int valueB);
+	~B();
+	void ShowB() const;
+};
+
+
+class C : public B, public A
+{
+private:
+	int m_fieldC;
+public:
+	C(const int valueA, const int valueB, const int valueC);
+	~C();
+	void ShowC() const;
+};
+
+A::A(const int valueA) : m_fieldA(valueA)
+{
+	cout << "Constructor A" << endl;
 }
 
+A::~A()
+{
+	cout << "Destructor A" << endl;
+}
+
+void A::ShowA() const
+{
+	cout << m_fieldA << endl;
+}
+
+B::B(const int valueB) : m_fieldB(valueB)
+{
+	cout << "Constructor B" << endl;
+}
+
+B::~B()
+{
+	cout << "Destructor B" << endl;
+}
+
+void B::ShowB() const
+{
+	cout << m_fieldB << endl;
+}
+
+C::C(const int valueA, const int valueB, const int valueC) :
+	A(valueA), B(valueB), m_fieldC(valueC)
+{
+	cout << "Constructor C" << endl;
+}
+
+C::~C()
+{
+	cout << "Destructor C" << endl;
+}
+
+void C::ShowC() const
+{
+	cout << m_fieldC << endl;
+}
+
+int main()
+{
+	C obj(10, 20, 30);
+	obj.ShowA();
+	obj.ShowB();
+	obj.ShowC();
+}
 
